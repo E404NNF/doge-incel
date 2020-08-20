@@ -1,15 +1,15 @@
 from setuptools import setup
 
 setup(
-    name='doge',
+    name='doge-incel',
     version='3.6.0',
-    url='https://github.com/thiderman/doge',
-    author='Lowe Thiderman',
+    url='https://github.com/E404NNF/incel-homophobic-doge',
+    author='E404NNF',
     author_email='lowe.thiderman@gmail.com',
-    description=('wow very terminal doge'),
+    description=('wow very terminal incel/homophbic doge'),
     license='MIT',
-    packages=['doge'],
-    package_data={'doge': ['static/*.txt']},
+    packages=['doge-incel'],
+    package_data={'doge-incel': ['static/*.txt']},
     classifiers=[
         'Development Status :: 5 - Production/Stable',
         'Environment :: Console',
@@ -17,5 +17,5 @@ setup(
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 2',
     ],
-    entry_points={'console_scripts': ['doge = doge.core:main']},
+    entry_points={'console_scripts': ['doge-incel = doge.core:main']},
 )
