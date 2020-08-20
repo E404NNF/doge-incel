@@ -5,7 +5,7 @@ setup(
     version='3.6.0',
     url='https://github.com/E404NNF/incel-homophobic-doge',
     author='E404NNF',
-    author_email='lowe.thiderman@gmail.com',
+    author_email='',
     description=('wow very terminal incel/homophbic doge'),
     license='MIT',
     packages=['doge-incel'],
@@ -17,5 +17,5 @@ setup(
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 2',
     ],
-    entry_points={'console_scripts': ['doge-incel = doge.core:main']},
+    entry_points={'console_scripts': ['doge-incel = doge-incel.core:main']},
 )
