@@ -118,7 +118,7 @@ PREFIXES = DogeIncelDeque(
 
 # Please keep in mind that this particular shibe is a terminal hax0r shibe,
 # and the words added should be in that domain
-WORD_LIST = ['faggot', 'nigga', 'retarded', 'woman']
+WORD_LIST = ['faggot(s)', 'nigga(s)', 'retarded(s)', 'woman', 'jew(s)', 'women']
 WORDS = DogeIncelDeque(*WORD_LIST)
 
 SUFFIXES = DogeIncelDeque(
