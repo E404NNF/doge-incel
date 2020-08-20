@@ -8,7 +8,7 @@ setup(
     author_email='lowe.thiderman@gmail.com',
     description=('wow very terminal incel/homophbic doge'),
     license='MIT',
-    packages=['doge-incel'],
+    packages=['doge'],
     package_data={'doge': ['static/*.txt']},
     classifiers=[
         'Development Status :: 5 - Production/Stable',
