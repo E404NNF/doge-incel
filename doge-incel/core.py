@@ -415,7 +415,7 @@ def onscreen_len(s):
 
 
 def setup_arguments():
-    parser = argparse.ArgumentParser('doge')
+    parser = argparse.ArgumentParser('doge-incel')
 
     parser.add_argument(
         '--shibe',
