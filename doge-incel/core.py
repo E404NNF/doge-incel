@@ -15,23 +15,23 @@ import unicodedata
 
 from os.path import dirname, join
 
-from doge-incel import wow
+from doge import wow
 
 ROOT = join(dirname(__file__), 'static')
-DEFAULT_DOGE = 'doge.txt'
+DEFAULT_DOGEINCEL = 'doge.txt'
 
 
-class Doge(object):
+class DogeIncel(object):
     def __init__(self, tty, ns):
         self.tty = tty
         self.ns = ns
-        self.doge_path = join(ROOT, ns.doge_path or DEFAULT_DOGE)
+        self.dogeincel_path = join(ROOT, ns.dogeincel_path or DEFAULT_DOGEINCEL)
         if ns.frequency:
             # such frequency based
             self.words = \
-                wow.FrequencyBasedDogeDeque(*wow.WORD_LIST, step=ns.step)
+                wow.FrequencyBasedDogeIncelDeque(*wow.WORD_LIST, step=ns.step)
         else:
-            self.words = wow.DogeDeque(*wow.WORD_LIST)
+            self.words = wow.DogeIncelDeque(*wow.WORD_LIST)
 
     def setup(self):
         # Setup seasonal data
@@ -39,17 +39,17 @@ class Doge(object):
 
         if self.tty.pretty:
             # stdout is a tty, load Shibe and calculate how wide he is
-            doge = self.load_doge()
-            max_doge = max(map(clean_len, doge)) + 15
+            dogeincel = self.load_dogeincel()
+            max_dogeincel = max(map(clean_len, dogeincel)) + 15
         else:
             # stdout is being piped and we should not load Shibe
-            doge = []
-            max_doge = 15
+            dogeincel = []
+            max_dogeincel = 15
 
-        if self.tty.width < max_doge:
+        if self.tty.width < max_dogeincel:
             # Shibe won't fit, so abort.
             sys.stderr.write('wow, such small terminal\n')
-            sys.stderr.write('no doge under {0} column\n'.format(max_doge))
+            sys.stderr.write('no dogeincel under {0} column\n'.format(max_dogeincel))
             sys.exit(1)
 
         # Check for prompt height so that we can fill the screen minus how high
@@ -58,9 +58,9 @@ class Doge(object):
         line_count = len(prompt) + 1
 
         # Create a list filled with empty lines and Shibe at the bottom.
-        fill = range(self.tty.height - len(doge) - line_count)
+        fill = range(self.tty.height - len(dogeincel) - line_count)
         self.lines = ['\n' for x in fill]
-        self.lines += doge
+        self.lines += dogeincel
 
         # Try to fetch data fed thru stdin
         had_stdin = self.get_stdin_data()
@@ -86,9 +86,9 @@ class Doge(object):
         if self.ns.season:
             return self.load_season(self.ns.season)
 
-        # If we've specified another doge or no doge at all, it does not make
+        # If we've specified another dogeincel or no dogeincel at all, it does not make
         # sense to use seasons.
-        if self.ns.doge_path is not None and not self.ns.no_shibe:
+        if self.ns.dogeincel_path is not None and not self.ns.no_shibe:
             return
 
         now = datetime.datetime.now()
@@ -110,12 +110,12 @@ class Doge(object):
             return
 
         season = wow.SEASONS[season_key]
-        self.doge_path = join(ROOT, season['pic'])
+        self.dogeincel_path = join(ROOT, season['pic'])
         self.words.extend(season['words'])
 
     def apply_text(self):
         """
-        Apply text around doge
+        Apply text around dogeincel
 
         """
 
@@ -134,10 +134,10 @@ class Doge(object):
             if i == 1 or i == len(affected) or random.choice(range(20)) == 0:
                 word = 'wow'
 
-            # Generate a new DogeMessage, possibly based on a word.
-            self.lines[target] = DogeMessage(self, line, word).generate()
+            # Generate a new DogeIncelMessage, possibly based on a word.
+            self.lines[target] = DogeIncelMessage(self, line, word).generate()
 
-    def load_doge(self):
+    def load_dogeincel(self):
         """
         Return pretty ASCII Shibe.
 
@@ -148,23 +148,23 @@ class Doge(object):
         if self.ns.no_shibe:
             return ['']
 
-        with open(self.doge_path) as f:
+        with open(self.dogeincel_path) as f:
             if sys.version_info < (3, 0):
                 if locale.getpreferredencoding() == 'UTF-8':
-                    doge_lines = [l.decode('utf-8') for l in f.xreadlines()]
+                    dogeincel_lines = [l.decode('utf-8') for l in f.xreadlines()]
                 else:
                     # encode to printable characters, leaving a space in place
                     # of untranslatable characters, resulting in a slightly
-                    # blockier doge on non-UTF8 terminals
-                    doge_lines = [
+                    # blockier dogeincel on non-UTF8 terminals
+                    dogeincel_lines = [
                         l.decode('utf-8')
                         .encode(locale.getpreferredencoding(), 'replace')
                         .replace('?', ' ')
                         for l in f.xreadlines()
                     ]
             else:
-                doge_lines = [l for l in f.readlines()]
-            return doge_lines
+                dogeincel_lines = [l for l in f.readlines()]
+            return dogeincel_lines
 
     def get_real_data(self):
         """
@@ -250,7 +250,7 @@ class Doge(object):
         procs = set()
 
         try:
-            # POSIX ps, so it should work in most environments where doge would
+            # POSIX ps, so it should work in most environments where dogeincel would
             p = sp.Popen(['ps', '-A', '-o', 'comm='], stdout=sp.PIPE)
             output, error = p.communicate()
 
@@ -269,7 +269,7 @@ class Doge(object):
             random.shuffle(proc_list)
             return proc_list
 
-    def print_doge(self):
+    def print_dogeincel(self):
         for line in self.lines:
             if sys.version_info < (3, 0):
                 line = line.encode('utf8')
@@ -277,15 +277,15 @@ class Doge(object):
         sys.stdout.flush()
 
 
-class DogeMessage(object):
+class DogeIncelMessage(object):
     """
     A randomly placed and randomly colored message
 
     """
 
-    def __init__(self, doge, occupied, word):
-        self.doge = doge
-        self.tty = doge.tty
+    def __init__(self, dogeincel, occupied, word):
+        self.dogeincel = dogeincel
+        self.tty = dogeincel.tty
         self.occupied = occupied
         self.word = word
 
@@ -308,7 +308,7 @@ class DogeMessage(object):
         if interval < 1:
             # The interval is too low, so the message can not be shown without
             # spilling over to the subsequent line, borking the setup.
-            # Return the doge slice that was in this row if there was one,
+            # Return the dogeincel slice that was in this row if there was one,
             # and a line break, effectively disabling the row.
             return self.occupied + "\n"
 
@@ -420,14 +420,14 @@ def setup_arguments():
     parser.add_argument(
         '--shibe',
         help='wow shibe file',
-        dest='doge_path',
+        dest='dogeincel_path',
         choices=os.listdir(ROOT)
     )
 
     parser.add_argument(
         '--no-shibe',
         action="store_true",
-        help="wow no doge show :("
+        help="wow no dogeincel show :("
     )
 
     parser.add_argument(
@@ -445,7 +445,7 @@ def setup_arguments():
     parser.add_argument(
         '--step',
         help='beautiful step',  # how much to step
-        #  between ranks in FrequencyBasedDogeDeque
+        #  between ranks in FrequencyBasedDogeIncelDeque
         type=int,
         default=2,
     )
@@ -483,15 +483,17 @@ def main():
 
     parser = setup_arguments()
     ns = parser.parse_args()
+	
     if ns.max_height:
         tty.height = ns.max_height
     if ns.max_width:
         tty.width = ns.max_width
 
     try:
-        shibe = Doge(tty, ns)
+        shibe = DogeIncel(tty, ns)
         shibe.setup()
-        shibe.print_doge()
+        shibe.print_dogeincel()
+		
 
     except (UnicodeEncodeError, UnicodeDecodeError):
         # Some kind of unicode error happened. This is usually because the
@@ -508,14 +510,14 @@ def main():
         if not lang.endswith('UTF-8'):
             print(
                 "wow error: locale '{0}' is not UTF-8.  ".format(lang) +
-                "doge needs UTF-8 to print Shibe.  Please set your system to "
+                "dogeincel needs UTF-8 to print Shibe.  Please set your system to "
                 "use a UTF-8 locale."
             )
             return 2
 
         print(
             "wow error: Unknown unicode error.  Please report at "
-            "https://github.com/thiderman/doge/issues and include output from "
+            "https://github.com/thiderman/dogeincel/issues and include output from "
             "/usr/bin/locale"
         )
         return 1
