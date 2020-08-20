@@ -15,7 +15,7 @@ import unicodedata
 
 from os.path import dirname, join
 
-from doge import wow
+from doge-incel import wow
 
 ROOT = join(dirname(__file__), 'static')
 DEFAULT_DOGE = 'doge.txt'
