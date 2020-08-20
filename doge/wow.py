@@ -118,11 +118,11 @@ PREFIXES = DogeDeque(
 
 # Please keep in mind that this particular shibe is a terminal hax0r shibe,
 # and the words added should be in that domain
-WORD_LIST = ['faggot', 'nigga', 'retarded']
+WORD_LIST = ['faggot', 'nigga', 'retarded', 'woman']
 WORDS = DogeDeque(*WORD_LIST)
 
 SUFFIXES = DogeDeque(
-    'wow', 'lol', 'hax', 'plz', 'lvl=100'
+    ', fuck', ', suck my dick', 'lmao', ', fuck you'
 )
 
 # A subset of the 255 color cube with the darkest colors removed. This is
