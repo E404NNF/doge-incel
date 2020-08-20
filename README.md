@@ -13,5 +13,8 @@ THIS README IS FOR THIS FORK ONLY, GO TO THE OG REPO AT [doge][doge] FOR THE OG 
 
 Run `doge-incel` in your terminal
 
+## Notes
+I wasn't able to change the package name(without fucking up the whole thing) so it will conflict with the actual doge repo.
+
 [doge]: https://github.com/thiderman/doge
 
