@@ -1,8 +1,12 @@
 doge-incel
 ====
+
 THIS README IS FOR THIS FORK ONLY, GO TO THE OG REPO AT [doge][doge] FOR THE OG README
 
 **doge-incel** is a fork of the [doge][doge] repo, it's edited to it can be racist, homophbic and incel, like the modern doge.
+
+![doge image](https://raw.githubusercontent.com/E404NNF/doge-incel/master/Screenshot.png)
+
 ## Installation
 
 1. `git clone https://github.com/E404NNF/incel-homophobic-doge.git`
